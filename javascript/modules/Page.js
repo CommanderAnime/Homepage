@@ -1,12 +1,27 @@
 export default class Page {
+    static header = 'Placeholder';
+    static name = 'Lorem Ipsum';
+    static icon = 'alert-circle-outline';
+
     constructor() {
         this.parent = $('#content');
-
         this.page = $('<div class="page"></div>');
-        this.h1 = $(`<h1>Placeholder</h1>`);
+
+        this.pageHeader = Page.header
+        this.pageName = Page.name;
+        this.pageIcon = Page.icon;
         this.sections = {};
 
-        this.page.append(this.h1);
+        this.page.append(this.header);
+    }
+    set pageHeader(header) {
+        this.header ? this.header.text(header) : this.header = $(`<h1>${ header }</h1>`);
+    }
+    set pageName(name) {
+        this.name = name;
+    }
+    set pageIcon(icon) {
+        this.icon = icon;
     }
     show() {
         this.parent.empty();
@@ -14,9 +29,6 @@ export default class Page {
     }
     hide() {
         this.parent.empty();
-    }
-    set header(title) {
-        this.h1.text(title);
     }
     newSection(html, name) {
         const wrapper = $('<div class="section"></div>');

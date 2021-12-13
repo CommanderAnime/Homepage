@@ -1,5 +1,4 @@
 import Pages from './Pages.js';
-const pages = new Pages();
 
 export default class Navigation {
     static get currentPage() {
@@ -14,57 +13,43 @@ export default class Navigation {
         this.indicator = $('<div class="indicator"></div>');
         this.listItems = [];
 
-        const self = this;
-        $([
-            {
-                name: 'Home',
-                icon: 'home-outline'
-            }, {
-                name: 'About',
-                icon: 'person-outline'
-            }, {
-                name: 'Contact',
-                icon: 'mail-outline'
-            }
-        ]).each(function() {
-            const lowerName = this.name.toLowerCase(),
+        const pages = new Pages();
+        $.each(pages, (key, page) => {
+            const lowerName = page.name.toLowerCase(),
             isCurrentPage = Navigation.currentPage === lowerName,
             listItem = $(`
                 <li class="list">
                     <div>
-                        <span class="icon"><ion-icon name="${ this.icon }"></ion-icon></span>
-                        <span class="text">${ this.name }</span>
+                        <span class="icon"><ion-icon name="${ page.icon }"></ion-icon></span>
+                        <span class="text">${ page.name }</span>
                     </div>
                 </li>
             `);
-            self.listItems.push(listItem);
 
-            listItem.on('mouseup', function() {
-                self.page = lowerName;
+            listItem.on('mouseup', (event) => {
+                this.page = lowerName;
 
-                self.listItems.forEach(item => {
+                this.listItems.forEach(item => {
                     item.removeClass('active');
                 });
-                this.classList.add('active');
+                event.delegateTarget.classList.add('active');
 
                 pages.show(lowerName);
             });
-
             if (isCurrentPage) listItem.mouseup();
 
-            self.list.append(listItem);
+            this.listItems.push(listItem.appendTo(this.list));
         });
-
         this.list.append([this.dropshadow, this.indicator]);
         this.body.append(this.list);
     }
     set page(value) {
         if (history.pushState) {
-            let searchParams = new URLSearchParams(window.location.search);
+            const searchParams = new URLSearchParams(window.location.search);
             searchParams.set('page', value);
-            let newurl = window.location.protocol + '//' + window.location.host + window.location.pathname + '?' + searchParams.toString();
+            const newurl = window.location.protocol + '//' + window.location.host + window.location.pathname + '?' + searchParams.toString();
             window.history.pushState({path: newurl}, '', newurl);
         }
-        /* Set/replace page contents */
+        /* TODO: Set/replace page contents */
     }
 }

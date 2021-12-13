@@ -11,8 +11,8 @@
 
 :root {
     --background: #000000;
-    --navigation-background-colour: #1b4378;
-    --navigation-indicator-colour: #225f93;
+    --navigation-background-colour: #0c3368;
+    --navigation-indicator-colour: #1d68a8;
     --navigation-dropshadow-colour: #3f62ac;
     --accent: #e8e6e3;
 }
@@ -80,7 +80,7 @@ body {
     letter-spacing: 0.05em;
     transition: 0.5s;
     opacity: 0;
-    transform: translateY(-25px);
+    transform: translateY(-23px);
 }
 
 #navigation ul li.active div .text {

@@ -1,10 +1,10 @@
 import Page from '../Page.js';
 
 export default class Home extends Page {
-    static name = 'home';
-    
     constructor() {
         super();
-        this.header = 'Homepage';
+        this.pageHeader = 'Homepage';
+        this.pageName = 'Home';
+        this.pageIcon = 'home-outline';
     }
 }
