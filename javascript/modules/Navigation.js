@@ -10,6 +10,7 @@ export default class Navigation {
     constructor() {
         this.body = $('<div id="navigation"></div>');
         this.list = $('<ul></ul>');
+        this.dropshadow = $('<div class="dropshadow"></div>');
         this.indicator = $('<div class="indicator"></div>');
         this.listItems = [];
 
@@ -23,7 +24,7 @@ export default class Navigation {
                 icon: 'person-outline'
             }, {
                 name: 'Contact',
-                icon: 'chatbubble-outline'
+                icon: 'mail-outline'
             }
         ]).each(function() {
             const lowerName = this.name.toLowerCase(),
@@ -54,7 +55,7 @@ export default class Navigation {
             self.list.append(listItem);
         });
 
-        this.list.append(this.indicator);
+        this.list.append([this.dropshadow, this.indicator]);
         this.body.append(this.list);
     }
     set page(value) {
