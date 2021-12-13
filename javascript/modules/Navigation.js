@@ -12,8 +12,10 @@ export default class Navigation {
         this.dropshadow = $('<div class="dropshadow"></div>');
         this.indicator = $('<div class="indicator"></div>');
         this.listItems = [];
+        this.trigger = null;
 
         const pages = new Pages();
+        let trigger;
         $.each(pages, (key, page) => {
             const lowerName = page.name.toLowerCase(),
             isCurrentPage = Navigation.currentPage === lowerName,
@@ -25,23 +27,28 @@ export default class Navigation {
                     </div>
                 </li>
             `);
+            this.listItems.push(listItem.appendTo(this.list));
 
-            listItem.on('mouseup', (event) => {
+            listItem.on('mouseup', (event, a) => {
                 this.page = lowerName;
-
                 this.listItems.forEach(item => {
                     item.removeClass('active');
                 });
                 event.delegateTarget.classList.add('active');
 
+                this.dropshadow
+                    .add(this.indicator)
+                    .css('transform', `translateX(${ event.delegateTarget.offsetLeft - this.listItems[0].offset().left - 70 }px)`);
+                
                 pages.show(lowerName);
             });
-            if (isCurrentPage) listItem.mouseup();
-
-            this.listItems.push(listItem.appendTo(this.list));
+            if (isCurrentPage) this.trigger = listItem;
         });
-        this.list.append([this.dropshadow, this.indicator]);
-        this.body.append(this.list);
+        
+        this.body.append([this.dropshadow, this.indicator, this.list]);
+    }
+    init() {
+        this.trigger.trigger('mouseup');
     }
     set page(value) {
         if (history.pushState) {
