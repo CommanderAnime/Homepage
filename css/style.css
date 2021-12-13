@@ -11,10 +11,23 @@
 
 :root {
     --background: #000000;
-    --navigation-background-colour: #0c3368;
-    --navigation-indicator-colour: #1d68a8;
-    --navigation-dropshadow-colour: #3f62ac;
+    --navigation-background-colour: #071337;
+    --navigation-indicator-colour: #07306e;
+    --navigation-dropshadow-colour: #3365e5;
+    --scrollbar-track: #000000;
+    --scrollbar-thumb: #071337;
     --accent: #e8e6e3;
+    --accent2: #c7beb0;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
 }
 
 body {
@@ -28,9 +41,8 @@ body {
     height: 50px;
     display: flex;
     justify-content: center;
-    align-items: center;
-
     background: var(--navigation-background-colour);
+    margin-bottom: 40px;
 }
 
 #navigation ul {
@@ -40,6 +52,7 @@ body {
 }
 
 #navigation ul li {
+    cursor: pointer;
     position: relative;
     list-style: none;
     width: 70px;
@@ -67,7 +80,6 @@ body {
     transition-delay: 0.1s;
     z-index: 1;
 }
-
 #navigation ul li.active div .icon {
     transform: translateY(35px);
 }
@@ -75,7 +87,7 @@ body {
 #navigation ul li div .text {
     position: absolute;
     width: 100px;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 1em;
     letter-spacing: 0.05em;
     transition: 0.5s;
@@ -85,7 +97,7 @@ body {
 
 #navigation ul li.active div .text {
     opacity: 1;
-    transform: translateY(-12px);
+    transform: translateY(-11px);
 }
 
 .indicator {
@@ -139,7 +151,7 @@ body {
     width: 200%;
     height: 100%;
     position: absolute;
-    background-image: radial-gradient(circle, #00000000 0%, #0000001a 7%, #000 25%);
+    background-image: radial-gradient(circle, transparent 0%, transparent 5%, #0000001a 9%, #000 25%);
     filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 15px var(--navigation-dropshadow-colour));
     will-change: opacity;
     z-index: -1;

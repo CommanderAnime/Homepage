@@ -6,5 +6,7 @@ export default class About extends Page {
         this.pageHeader = 'About Me!';
         this.pageName = 'About';
         this.pageIcon = 'person-outline';
+
+        this.newSection('<div>Hello there. Test!</div>', 'test', true);
     }
 }

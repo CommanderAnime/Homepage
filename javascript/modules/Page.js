@@ -1,3 +1,5 @@
+import Section from './Section.js';
+
 export default class Page {
     static header = 'Placeholder';
     static name = 'Lorem Ipsum';
@@ -30,16 +32,19 @@ export default class Page {
     hide() {
         this.parent.empty();
     }
-    newSection(html, name) {
-        const wrapper = $('<div class="section"></div>');
+    newSection(html, key, shouldShow) {
+        const section = new Section(html, key, shouldShow);
 
-        wrapper.append(html);
-
-        this.sections[name] = wrapper;
-        this.page.append(wrapper);
+        this.sections[key] = section;
+        this.page.append(section.wrapper);
     }
-    removeSection(name) {
-        this.sections[name].remove();
-        delete this.sections[name];
+    removeSection(key) {
+        this.sections[key].destroy();
+        delete this.sections[key];
+    }
+    removeSectionAtIndex(index) {
+        const key = Object.keys(this.sections)[index];
+        this.sections[key].destroy();
+        delete this.sections[key];
     }
 }
