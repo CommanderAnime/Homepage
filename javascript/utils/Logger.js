@@ -1,4 +1,4 @@
-import Browser from '/Browser.js';
+import Browser from './Browser.js';
 
 export default class Logger {
     static time(colour, ...args) {

@@ -1,3 +1,5 @@
+import Logger from '../utils/Logger.js';
+
 import Home from './pages/Home.js';
 import About from './pages/About.js';
 import Contact from './pages/Contact.js';
@@ -8,7 +10,7 @@ export default class Pages {
         this.about = new About();
         this.contact = new Contact();
 
-        console.log('Pages module loaded!');
+        Logger.log('Page Modules Loaded')
     }
     show(page) {
         this[page].show();

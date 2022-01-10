@@ -1,34 +1,20 @@
 export default class Browser {
     static get browser() {
-        if (Browser.isChrome) {
-            return 'chrome';
-        } else if (Browser.isSafari) {
-            return 'safari';
-        } else if (Browser.isEdge) {
-            return 'edge';
-        } else if (Browser.isFirefox) {
-            return 'firefox';
-        } else if (Browser.isOpera) {
-            return 'opera';
-        } else {
-            return 'unknown';
-        }
-    }
+		const userAgent = navigator.userAgent;
 
-    static get isChrome() {
-        return !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
-    }
-    static get isSafari() {
-        return /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === '[object SafariRemoteNotification]'; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
-    }
-    static get isEdge() {
-        return typeof isIE !== 'undefined' && !!window.StyleMedia;
-    }
-    static get isFirefox() {
-        return typeof InstallTrigger !== 'undefined';
-    }
-    static get isOpera() {
-        return (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+		if (userAgent.match(/chrome|chromium|crios/i)) {
+			return 'chrome';
+		} else if (userAgent.match(/safari/i)) {
+			return 'safari';
+		} else if (userAgent.match(/edg/i)) {
+			return 'edge';
+		} else if (userAgent.match(/firefox|fxios/i)) {
+			return 'firefox';
+		} else if (userAgent.match(/opr\//i)) {
+			return 'opera';
+		} else {
+			return 'No browser detection';
+		}
     }
 
     static get dark() {
@@ -65,6 +51,7 @@ export default class Browser {
                 this[Browser.browser].dark.font_default : '#FFFFFF';
         },
         get font_dark() {
+            console.log(Browser.dark, this, Browser.browser)
             return Browser.dark ?
                 this[Browser.browser].dark.font_dark : '#FFFFFF';
         },
