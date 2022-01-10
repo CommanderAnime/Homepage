@@ -2,7 +2,7 @@ import Section from './Section.js';
 
 export default class Page {
     static header = 'Placeholder';
-    static name = 'Lorem Ipsum';
+    static pageName = 'Lorem Ipsum';
     static icon = 'alert-circle-outline';
 
     constructor() {
@@ -10,7 +10,7 @@ export default class Page {
         this.page = $('<div class="page"></div>');
 
         this.pageHeader = Page.header
-        this.pageName = Page.name;
+        this.pageName = Page.pageName;
         this.pageIcon = Page.icon;
         this.sections = {};
 
