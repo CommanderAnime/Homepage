@@ -1,17 +1,13 @@
 import Section from './Section.js';
 
 export default class Page {
-    static header = 'Placeholder';
-    static pageName = 'Lorem Ipsum';
-    static icon = 'alert-circle-outline';
-
     constructor() {
         this.parent = $('#content');
         this.page = $('<div class="page"></div>');
 
-        this.pageHeader = Page.header
-        this.pageName = Page.pageName;
-        this.pageIcon = Page.icon;
+        this.pageHeader = 'Placeholder';
+        this.pageName = 'Lorem Ipsum'
+        this.pageIcon = 'alert-circle-outline';
         this.sections = {};
 
         this.page.append(this.header);
