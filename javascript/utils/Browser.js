@@ -51,7 +51,6 @@ export default class Browser {
                 this[Browser.browser].dark.font_default : '#FFFFFF';
         },
         get font_dark() {
-            console.log(Browser.dark, this, Browser.browser)
             return Browser.dark ?
                 this[Browser.browser].dark.font_dark : '#FFFFFF';
         },
